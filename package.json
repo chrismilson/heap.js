@@ -1,5 +1,5 @@
 {
-	"name": "@shlappas/heapq",
+	"name": "@shlappas/heap",
 	"version": "1.0.0",
 	"description": "Functions for maintaining heaps with arrays",
 	"license": "MIT",
