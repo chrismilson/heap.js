@@ -1,4 +1,3 @@
-import '../typings/jest'
 import { Comparator, heapify } from '..'
 
 describe('heapify', () => {
