@@ -14,4 +14,12 @@ describe('heappop', () => {
     expect(heappop(heap, compare)).toBe(2)
     expect(heap.length).toBe(originalLength - 1)
   })
+
+  it('Should maintain the heap invariant', () => {
+    const heap = [...exampleHeap]
+    const compare = exampleCompare
+
+    heappop(heap, compare)
+    expect(heap).toObeyHeapInvariant(compare)
+  })
 })
