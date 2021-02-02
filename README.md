@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/%40shlappas%2Fheap.svg)](https://badge.fury.io/js/%40shlappas%2Fheap)
+[![Build Status](https://github.com/chrismilson/heap.js/workflows/Test/badge.svg)](https://github.com/chrismilson/heap.js/actions)
+
 # Heap
 
 A simple module to maintain a binary heap.
