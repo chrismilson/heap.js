@@ -13,7 +13,7 @@ expect.extend({
       ) {
         return {
           pass: false,
-          message: () => `Expected ${recieved} to obey he heap invariant.`,
+          message: () => `Expected ${recieved} to obey the heap invariant.`,
         }
       }
     }
