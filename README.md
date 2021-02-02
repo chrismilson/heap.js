@@ -21,6 +21,16 @@ const heap = [9, 7, 6, 4, 1]
 heapify(heap) // now heap is a min-heap!
 ```
 
+Calling `heapify` makes sure that we can do the following:
+
+- `heap[0]` is the minimum element in the array.
+- Calling any of `heappush`, `heappop`, `heappushpop`, or `heapreplace` achieves
+  the intended result. For more information, check out [the
+  docs](https://shlappas.com/heap.js/modules.html). Built with
+  [`typedoc`](https://github.com/TypeStrong/typedoc)!
+
+### Default Compare
+
 In keeping with the builtin `Array.prototype.sort()` function, the default
 behaviour of the heap methods is to compare values based on their string
 representation. 
@@ -90,23 +100,20 @@ We can merge a bunch of already sorted arrays\*:
 function merge(compare, ...preSorted) {
   const result = []
 
-  const status = [...zip(repeat(0), filter(arr => arr.length > 0, preSorted))]
+  const status = [...zip(repeat(0), preSorted)]
 
-  // Move empty lists to the front of the heap.
-  const cmp = ([i1, l1], [i2, l2]) => {
-    if (i1 === l1.length) return -1
-    if (i2 === l2.length) return 1
+  const { heapify, heappop, heapreplace } = useHeap(([i1, l1], [i2, l2]) => {
     return compare(l1[i1], l2[i2])
-  }
+  })
 
-  heapify(status, cmp)
+  heapify(status)
 
   while (status.length) {
     const [idx, list] = status[0]
     result.append(list[idx])
     idx += 1
     if (idx === list.length) {
-      heappop(status, cmp)
+      heappop(status)
     } else {
       heapreplace(status, [idx, list])
     }
@@ -121,5 +128,5 @@ functions (along with some other nice tools for iterators), consider using
 [`@shlappas/itertools`](https://www.npmjs.com/package/@shlappas/itertools)!*
 
 \* *I reccomend not using these implementations verbatim; some heavy assumptions
-are made about `arr` and `n`. Check out [`examples`](examples) for some safer
+are made in the name of brevity. Check out [`examples`](examples) for some safer
 implementations.*
