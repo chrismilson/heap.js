@@ -1,0 +1,236 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@shlappas/heap</title>
+	<meta name="description" content="Documentation for @shlappas/heap">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@shlappas/heap</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>@shlappas/heap</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://badge.fury.io/js/%40shlappas%2Fheap"><img src="https://badge.fury.io/js/%40shlappas%2Fheap.svg" alt="npm version"></a>
+				<a href="https://github.com/chrismilson/heap.js/actions"><img src="https://github.com/chrismilson/heap.js/workflows/Test/badge.svg" alt="Build Status"></a></p>
+				<a href="#heap" id="heap" style="color: inherit; text-decoration: none;">
+					<h1>Heap</h1>
+				</a>
+				<p>A simple module to maintain a binary heap.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code class="language-bash"><span style="color: #000000">yarn add @shlappas/heap</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>Similar to the python <a href="https://docs.python.org/3/library/heapq.html"><code>heapq</code></a>
+				module, the actual datastructure is just a normal array!</p>
+				<pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">heap</span><span style="color: #000000"> = [</span><span style="color: #098658">9</span><span style="color: #000000">, </span><span style="color: #098658">7</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">]</span>
+<span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">heap</span><span style="color: #000000">) </span><span style="color: #008000">// now heap is a min-heap!</span>
+</code></pre>
+				<p>Calling <code>heapify</code> makes sure that we can do the following:</p>
+				<ul>
+					<li><code>heap[0]</code> is the minimum element.</li>
+					<li>Calling any of <code>heappush</code>, <code>heappop</code>, <code>heappushpop</code>, or <code>heapreplace</code> achieves
+					the intended result. Check out <a href="">the docs</a></li>
+				</ul>
+				<a href="#default-compare" id="default-compare" style="color: inherit; text-decoration: none;">
+					<h3>Default Compare</h3>
+				</a>
+				<p>In keeping with the builtin <code>Array.prototype.sort()</code> function, the default
+					behaviour of the heap methods is to compare values based on their string
+				representation. </p>
+				<pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">heap</span><span style="color: #000000"> = [</span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">100</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">50</span><span style="color: #000000">]</span>
+<span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">heap</span><span style="color: #000000">) </span><span style="color: #008000">// [10, 100, 5, 50], since &#039;10&#039; &lt; &#039;5&#039; etc.</span>
+</code></pre>
+				<p>If this is not intended, there are two options:</p>
+				<ul>
+					<li><p>Pass a custom <code>compare</code> function to each individual call:</p>
+						<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">heapify</span><span style="color: #000000">, </span><span style="color: #001080">heappop</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@shlappas/heapq&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">compare</span><span style="color: #000000"> = (</span><span style="color: #001080">a</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">, </span><span style="color: #001080">b</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> - </span><span style="color: #001080">b</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">heap</span><span style="color: #000000"> = [</span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">100</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">50</span><span style="color: #000000">]</span>
+
+<span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">heap</span><span style="color: #000000">, </span><span style="color: #001080">compare</span><span style="color: #000000">) </span><span style="color: #008000">// [5, 50, 10, 100]</span>
+<span style="color: #795E26">heappop</span><span style="color: #000000">(</span><span style="color: #001080">heap</span><span style="color: #000000">, </span><span style="color: #001080">compare</span><span style="color: #000000">) </span><span style="color: #008000">// 5 and the remaining heap is [10, 50, 100]</span>
+</code></pre>
+					</li>
+					<li><p>Redefine the heap methods with a fixed <code>compare</code> function:</p>
+						<pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">useCompare</span><span style="color: #000000"> } from &#039;@shlappas/heapq&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">heapify</span><span style="color: #000000">, </span><span style="color: #0070C1">heappop</span><span style="color: #000000"> } = </span><span style="color: #795E26">useCompare</span><span style="color: #000000">&lt;</span><span style="color: #267F99">number</span><span style="color: #000000">&gt;((</span><span style="color: #001080">a</span><span style="color: #000000">, </span><span style="color: #001080">b</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> - </span><span style="color: #001080">b</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">heap</span><span style="color: #000000"> = [</span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">100</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">50</span><span style="color: #000000">]</span>
+
+<span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">heap</span><span style="color: #000000">) </span><span style="color: #008000">// [5, 50, 10, 100]</span>
+<span style="color: #795E26">heappop</span><span style="color: #000000">(</span><span style="color: #001080">heap</span><span style="color: #000000">) </span><span style="color: #008000">// 5 and the remaining heap is [10, 50, 100]</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<a href="#n-largest" id="n-largest" style="color: inherit; text-decoration: none;">
+					<h3>N Largest</h3>
+				</a>
+				<p>We can find the n largest elements of an array*:</p>
+				<pre><code class="language-ts"><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">nLargest</span><span style="color: #000000">&lt;</span><span style="color: #267F99">T</span><span style="color: #000000">, </span><span style="color: #267F99">N</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">number</span><span style="color: #000000">&gt;(</span><span style="color: #001080">arr</span><span style="color: #000000">: </span><span style="color: #267F99">T</span><span style="color: #000000">[], </span><span style="color: #001080">n</span><span style="color: #000000">: </span><span style="color: #267F99">N</span><span style="color: #000000">): </span><span style="color: #267F99">Tuple</span><span style="color: #000000">&lt;</span><span style="color: #267F99">T</span><span style="color: #000000">, </span><span style="color: #267F99">N</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000">: </span><span style="color: #267F99">T</span><span style="color: #000000">[] = []</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> = </span><span style="color: #098658">0</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000"> &lt; </span><span style="color: #001080">n</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000">++) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #795E26">push</span><span style="color: #000000">(</span><span style="color: #001080">arr</span><span style="color: #000000">[</span><span style="color: #001080">i</span><span style="color: #000000">])</span>
+<span style="color: #000000">  }</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">)</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> = </span><span style="color: #001080">n</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000"> &lt; </span><span style="color: #001080">arr</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000">++) {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">heappushpop</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">, </span><span style="color: #001080">arr</span><span style="color: #000000">[</span><span style="color: #001080">i</span><span style="color: #000000">])</span>
+<span style="color: #000000">  }</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">result</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">Tuple</span><span style="color: #000000">&lt;</span><span style="color: #267F99">T</span><span style="color: #000000">, </span><span style="color: #267F99">N</span><span style="color: #000000">&gt;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>*<strong>Shameless plug</strong>: For the <code>Tuple</code> type, consider using
+				<a href="https://www.npmjs.com/package/tuple-type"><code>tuple-type</code></a>!*</p>
+				<a href="#merge" id="merge" style="color: inherit; text-decoration: none;">
+					<h3>Merge</h3>
+				</a>
+				<p>We can merge a bunch of already sorted arrays*:</p>
+				<pre><code class="language-js"><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">merge</span><span style="color: #000000">(</span><span style="color: #001080">compare</span><span style="color: #000000">, ...</span><span style="color: #001080">preSorted</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = []</span>
+
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">status</span><span style="color: #000000"> = [...</span><span style="color: #795E26">zip</span><span style="color: #000000">(</span><span style="color: #795E26">repeat</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #795E26">filter</span><span style="color: #000000">(</span><span style="color: #001080">arr</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">arr</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000"> &gt; </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #001080">preSorted</span><span style="color: #000000">))]</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// Move empty lists to the front of the heap.</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">cmp</span><span style="color: #000000"> = ([</span><span style="color: #001080">i1</span><span style="color: #000000">, </span><span style="color: #001080">l1</span><span style="color: #000000">], [</span><span style="color: #001080">i2</span><span style="color: #000000">, </span><span style="color: #001080">l2</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">i1</span><span style="color: #000000"> === </span><span style="color: #001080">l1</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) </span><span style="color: #AF00DB">return</span><span style="color: #000000"> -</span><span style="color: #098658">1</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">i2</span><span style="color: #000000"> === </span><span style="color: #001080">l2</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #098658">1</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">compare</span><span style="color: #000000">(</span><span style="color: #001080">l1</span><span style="color: #000000">[</span><span style="color: #001080">i1</span><span style="color: #000000">], </span><span style="color: #001080">l2</span><span style="color: #000000">[</span><span style="color: #001080">i2</span><span style="color: #000000">])</span>
+<span style="color: #000000">  }</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">, </span><span style="color: #001080">cmp</span><span style="color: #000000">)</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">while</span><span style="color: #000000"> (</span><span style="color: #001080">status</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> [</span><span style="color: #0070C1">idx</span><span style="color: #000000">, </span><span style="color: #0070C1">list</span><span style="color: #000000">] = </span><span style="color: #001080">status</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">]</span>
+<span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #795E26">append</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">[</span><span style="color: #001080">idx</span><span style="color: #000000">])</span>
+<span style="color: #000000">    </span><span style="color: #001080">idx</span><span style="color: #000000"> += </span><span style="color: #098658">1</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">idx</span><span style="color: #000000"> === </span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #795E26">heappop</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">, </span><span style="color: #001080">cmp</span><span style="color: #000000">)</span>
+<span style="color: #000000">    } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #795E26">heapreplace</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">, [</span><span style="color: #001080">idx</span><span style="color: #000000">, </span><span style="color: #001080">list</span><span style="color: #000000">])</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">result</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>*<strong>Shameless Plug 2: Electric Boogaloo</strong>: For the <code>zip</code>, <code>filter</code> and <code>repeat</code>
+					functions (along with some other nice tools for iterators), consider using
+				<a href="https://www.npmjs.com/package/@shlappas/itertools"><code>@shlappas/itertools</code></a>!*</p>
+				<p>* <em>I reccomend not using these implementations verbatim; some heavy assumptions
+						are made about <code>arr</code> and <code>n</code>. Check out <a href="examples"><code>examples</code></a> for some safer
+				implementations.</em></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#comparator" class="tsd-kind-icon">Comparator</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#defaultcmp" class="tsd-kind-icon">default<wbr>Cmp</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#heapify" class="tsd-kind-icon">heapify</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#heappop" class="tsd-kind-icon">heappop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#heappush" class="tsd-kind-icon">heappush</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#heappushpop" class="tsd-kind-icon">heappushpop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#heapreplace" class="tsd-kind-icon">heapreplace</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#useheap" class="tsd-kind-icon">use<wbr>Heap</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
