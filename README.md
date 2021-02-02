@@ -44,7 +44,7 @@ If this is not intended, there are two options:
 
 - Pass a custom `compare` function to each individual call:
   ```ts
-  import { heapify, heappop } from '@shlappas/heapq'
+  import { heapify, heappop } from '@shlappas/heap'
 
   const compare = (a: number, b: number) => a - b
 
@@ -56,9 +56,9 @@ If this is not intended, there are two options:
 
 - Redefine the heap methods with a fixed `compare` function:
   ```ts
-  const { useCompare } from '@shlappas/heapq'
+  const { useHeap } from '@shlappas/heap'
 
-  const { heapify, heappop } = useCompare<number>((a, b) => a - b)
+  const { heapify, heappop } = useHeap<number>((a, b) => a - b)
   const heap = [10, 100, 5, 50]
 
   heapify(heap) // [5, 50, 10, 100]
