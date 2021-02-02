@@ -94,8 +94,8 @@ export function heappush<T>(
 }
 
 /**
- * Removes and returns the minimum element (according to `lt`) from the heap
- * while maintaining the heap substructure.
+ * Removes and returns the minimum element from the heap while maintaining the
+ * heap substructure.
  */
 export function heappop<T>(
   heap: T[],
@@ -116,10 +116,15 @@ export function heappop<T>(
 }
 
 /**
- * Pushes `value` onto the heap, then pops to return the minimum (according to
- * `lt`) element in the heap.
+ * Pushes `value` onto the heap, then pops to return the minimum element in the
+ * heap.
  *
  * This combined action runs faster than a push followed by a pop.
+ *
+ * This may return the value that was to be added, leaving the heap unchanged.
+ * If this is not the intended use, consider using `heapreplace`.
+ *
+ * @see [[heapreplace]]
  */
 export function heappushpop<T>(
   heap: T[],
@@ -138,8 +143,7 @@ export function heappushpop<T>(
 }
 
 /**
- * Pops the minimum element (according to `lt`) from the heap and then pushes
- * `value` onto the heap.
+ * Pops the minimum element from the heap and then pushes `value` onto the heap.
  *
  * Faster than a pop followed by a push.
  *
@@ -169,8 +173,9 @@ export function heapreplace<T>(
  * Useful for defining a max-heap, or a heap that compares numbers by their
  * value instead of their string representation.
  *
- * This functionality can be done by explicitly stating the compare method every
- * time, but that can become quite verbose.
+ * This functionality can be obtained by instead explicitly stating the custom
+ * compare method every time, but that can become quite verbose, and cause bugs
+ * if omitted.
  *
  * @example
  * ```ts

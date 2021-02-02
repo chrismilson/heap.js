@@ -79,9 +79,11 @@
 </code></pre>
 				<p>Calling <code>heapify</code> makes sure that we can do the following:</p>
 				<ul>
-					<li><code>heap[0]</code> is the minimum element.</li>
+					<li><code>heap[0]</code> is the minimum element in the array.</li>
 					<li>Calling any of <code>heappush</code>, <code>heappop</code>, <code>heappushpop</code>, or <code>heapreplace</code> achieves
-					the intended result. Check out <a href="">the docs</a></li>
+						the intended result. For more information, check out <a href="https://shlappas.com/heap.js/modules.html">the
+						docs</a>. Built with
+					<a href="https://github.com/TypeStrong/typedoc"><code>typedoc</code></a>!</li>
 				</ul>
 				<a href="#default-compare" id="default-compare" style="color: inherit; text-decoration: none;">
 					<h3>Default Compare</h3>
@@ -148,23 +150,20 @@
 				<pre><code class="language-js"><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">merge</span><span style="color: #000000">(</span><span style="color: #001080">compare</span><span style="color: #000000">, ...</span><span style="color: #001080">preSorted</span><span style="color: #000000">) {</span>
 <span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = []</span>
 
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">status</span><span style="color: #000000"> = [...</span><span style="color: #795E26">zip</span><span style="color: #000000">(</span><span style="color: #795E26">repeat</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #795E26">filter</span><span style="color: #000000">(</span><span style="color: #001080">arr</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">arr</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000"> &gt; </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #001080">preSorted</span><span style="color: #000000">))]</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">status</span><span style="color: #000000"> = [...</span><span style="color: #795E26">zip</span><span style="color: #000000">(</span><span style="color: #795E26">repeat</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #001080">preSorted</span><span style="color: #000000">)]</span>
 
-<span style="color: #000000">  </span><span style="color: #008000">// Move empty lists to the front of the heap.</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">cmp</span><span style="color: #000000"> = ([</span><span style="color: #001080">i1</span><span style="color: #000000">, </span><span style="color: #001080">l1</span><span style="color: #000000">], [</span><span style="color: #001080">i2</span><span style="color: #000000">, </span><span style="color: #001080">l2</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">i1</span><span style="color: #000000"> === </span><span style="color: #001080">l1</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) </span><span style="color: #AF00DB">return</span><span style="color: #000000"> -</span><span style="color: #098658">1</span>
-<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">i2</span><span style="color: #000000"> === </span><span style="color: #001080">l2</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #098658">1</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">heapify</span><span style="color: #000000">, </span><span style="color: #0070C1">heappop</span><span style="color: #000000">, </span><span style="color: #0070C1">heapreplace</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHeap</span><span style="color: #000000">(([</span><span style="color: #001080">i1</span><span style="color: #000000">, </span><span style="color: #001080">l1</span><span style="color: #000000">], [</span><span style="color: #001080">i2</span><span style="color: #000000">, </span><span style="color: #001080">l2</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">compare</span><span style="color: #000000">(</span><span style="color: #001080">l1</span><span style="color: #000000">[</span><span style="color: #001080">i1</span><span style="color: #000000">], </span><span style="color: #001080">l2</span><span style="color: #000000">[</span><span style="color: #001080">i2</span><span style="color: #000000">])</span>
-<span style="color: #000000">  }</span>
+<span style="color: #000000">  })</span>
 
-<span style="color: #000000">  </span><span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">, </span><span style="color: #001080">cmp</span><span style="color: #000000">)</span>
+<span style="color: #000000">  </span><span style="color: #795E26">heapify</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">)</span>
 
 <span style="color: #000000">  </span><span style="color: #AF00DB">while</span><span style="color: #000000"> (</span><span style="color: #001080">status</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) {</span>
 <span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> [</span><span style="color: #0070C1">idx</span><span style="color: #000000">, </span><span style="color: #0070C1">list</span><span style="color: #000000">] = </span><span style="color: #001080">status</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">]</span>
 <span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #795E26">append</span><span style="color: #000000">(</span><span style="color: #001080">list</span><span style="color: #000000">[</span><span style="color: #001080">idx</span><span style="color: #000000">])</span>
 <span style="color: #000000">    </span><span style="color: #001080">idx</span><span style="color: #000000"> += </span><span style="color: #098658">1</span>
 <span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">idx</span><span style="color: #000000"> === </span><span style="color: #001080">list</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000">) {</span>
-<span style="color: #000000">      </span><span style="color: #795E26">heappop</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">, </span><span style="color: #001080">cmp</span><span style="color: #000000">)</span>
+<span style="color: #000000">      </span><span style="color: #795E26">heappop</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">)</span>
 <span style="color: #000000">    } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
 <span style="color: #000000">      </span><span style="color: #795E26">heapreplace</span><span style="color: #000000">(</span><span style="color: #001080">status</span><span style="color: #000000">, [</span><span style="color: #001080">idx</span><span style="color: #000000">, </span><span style="color: #001080">list</span><span style="color: #000000">])</span>
 <span style="color: #000000">    }</span>
@@ -177,7 +176,7 @@
 					functions (along with some other nice tools for iterators), consider using
 				<a href="https://www.npmjs.com/package/@shlappas/itertools"><code>@shlappas/itertools</code></a>!*</p>
 				<p>* <em>I reccomend not using these implementations verbatim; some heavy assumptions
-						are made about <code>arr</code> and <code>n</code>. Check out <a href="examples"><code>examples</code></a> for some safer
+						are made in the name of brevity. Check out <a href="examples"><code>examples</code></a> for some safer
 				implementations.</em></p>
 			</div>
 		</div>
