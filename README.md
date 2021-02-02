@@ -83,9 +83,9 @@ function nLargest<T, N extends number>(arr: T[], n: N): Tuple<T, N> {
 
 We can merge a bunch of already sorted arrays\*:
 
-```ts
-function merge<T>(compare: (a: T, b: T) => number, ...preSorted: T[][]): T[] {
-  const result: T[] = []
+```js
+function merge(compare, ...preSorted) {
+  const result = []
 
   const status = [...zip(repeat(0), filter(arr => arr.length > 0, preSorted))]
 
@@ -113,9 +113,10 @@ function merge<T>(compare: (a: T, b: T) => number, ...preSorted: T[][]): T[] {
 }
 ```
 
-***Shameless plug 2: Electric Boogaloo**: For the `zip`, `filter` and `repeat`
+***Shameless Plug 2: Electric Boogaloo**: For the `zip`, `filter` and `repeat`
 functions (along with some other nice tools for iterators), consider using
 [`@shlappas/itertools`](https://www.npmjs.com/package/@shlappas/itertools)!*
 
 \* *I reccomend not using these implementations verbatim; some heavy assumptions
-are made about arr and n. Check out [`examples`](examples) for some safer implementations.*
+are made about `arr` and `n`. Check out [`examples`](examples) for some safer
+implementations.*
